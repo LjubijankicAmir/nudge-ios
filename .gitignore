@@ -1,0 +1,42 @@
+# ---- macOS ----
+.DS_Store
+
+# ---- Xcode: user-specific state ----
+# Per-user window layout, breakpoints, scheme ordering. Never share these.
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# ---- Xcode: build output ----
+DerivedData/
+build/
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ---- Swift Package Manager ----
+.build/
+.swiftpm/
+# NOTE: Package.resolved is intentionally NOT ignored — it pins dependency
+# versions so builds are reproducible.
+# NOTE: /Packages is intentionally NOT ignored — local SPM packages live there
+# and are first-party source.
+
+# ---- Legacy Xcode cruft ----
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# ---- Secrets ----
+.env
+*.p8
+*.p12
+*.mobileprovision
