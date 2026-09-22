@@ -13,16 +13,26 @@ say so rather than quietly diverging.
 
 ## Current state
 
-Foundations. Two local packages exist and are under test; no features or screens yet.
-The three app extension targets have not been created.
+Foundations. Packages and all six targets exist and build; no features or screens yet.
+The extensions are still Apple's unmodified templates.
 
 ```
 Nudge/                 app target (synchronized folder — files on disk are compiled
                        automatically, no project edits needed to add one)
+NudgeMonitor/          DeviceActivityMonitor extension    app.nudge.NudgeMonitor
+NudgeShield/           ShieldConfiguration extension      app.nudge.NudgeShield
+NudgeShieldAction/     ShieldAction extension             app.nudge.NudgeShieldAction
 Packages/NudgeCore/    extension-safe: domain, persistence, clock, Screen Time
                        abstraction. Zero dependencies, no SwiftUI.
 Packages/DesignSystem/ app-only: tokens, components, gallery. SwiftUI.
 ```
+
+All four runnable targets carry the `group.app.nudge` App Group and Family Controls
+entitlements. `NudgeTests/AppGroupTests.swift` guards this at runtime — if the App
+Group is ever dropped from a target, those tests fail loudly instead of the app
+silently losing sight of its extensions.
+
+No `DEVELOPMENT_TEAM` is set yet, so device builds are not yet possible.
 
 ## Build & verify
 
