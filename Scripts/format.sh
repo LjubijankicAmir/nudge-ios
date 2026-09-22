@@ -9,5 +9,5 @@ if [[ "${1:-}" == "--lint" ]]; then
     MODE=(lint --strict)
 fi
 
-find Nudge nudge Packages -name '*.swift' -not -path '*/.build/*' -print0 2>/dev/null \
+find Nudge Packages -name '*.swift' -not -path '*/.build/*' -print0 2>/dev/null \
     | xargs -0 xcrun swift-format "${MODE[@]}" --configuration .swift-format --parallel

@@ -18,8 +18,8 @@ Scaffolding. Xcode project + docs only; no features implemented yet.
 ## Build & verify
 
 ```bash
-xcodebuild -scheme nudge -destination 'platform=iOS Simulator,name=iPhone 17' build
-xcodebuild -scheme nudge -destination 'platform=iOS Simulator,name=iPhone 17' test
+xcodebuild -scheme Nudge -destination 'platform=iOS Simulator,name=iPhone 17' build
+xcodebuild -scheme Nudge -destination 'platform=iOS Simulator,name=iPhone 17' test
 ```
 
 Always build after a change. Swift 6 concurrency errors are much easier to resolve one
