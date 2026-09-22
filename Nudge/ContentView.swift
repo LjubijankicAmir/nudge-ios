@@ -1,21 +1,10 @@
-//
-//  ContentView.swift
-//  nudge
-//
-//  Created by User on 16. 9. 2026..
-//
-
+import DesignSystem
+import NudgeCore
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        DesignSystemGallery()
     }
 }
 

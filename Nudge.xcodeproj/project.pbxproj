@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A1B2C3D4000000000000E005 /* NudgeCore in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4000000000000E003 /* NudgeCore */; };
+		A1B2C3D4000000000000E006 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = A1B2C3D4000000000000E004 /* DesignSystem */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		49C8C7CE305AD4D60094A978 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1B2C3D4000000000000E005 /* NudgeCore in Frameworks */,
+				A1B2C3D4000000000000E006 /* DesignSystem in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = Nudge;
 			packageProductDependencies = (
+				A1B2C3D4000000000000E003 /* NudgeCore */,
+				A1B2C3D4000000000000E004 /* DesignSystem */,
 			);
 			productName = Nudge;
 			productReference = 49C8C7C0305AD4D30094A978 /* Nudge.app */;
@@ -186,7 +195,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 49C8C7BB305AD4D30094A978 /* Build configuration list for PBXProject "nudge" */;
+			buildConfigurationList = 49C8C7BB305AD4D30094A978 /* Build configuration list for PBXProject "Nudge" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -195,6 +204,10 @@
 			);
 			mainGroup = 49C8C7B7305AD4D30094A978;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A1B2C3D4000000000000E001 /* XCLocalSwiftPackageReference "Packages/NudgeCore" */,
+				A1B2C3D4000000000000E002 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 49C8C7C1305AD4D30094A978 /* Products */;
 			projectDirPath = "";
@@ -267,6 +280,28 @@
 			targetProxy = 49C8C7D8305AD4D60094A978 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		A1B2C3D4000000000000E001 /* XCLocalSwiftPackageReference "Packages/NudgeCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/NudgeCore;
+		};
+		A1B2C3D4000000000000E002 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DesignSystem;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1B2C3D4000000000000E003 /* NudgeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NudgeCore;
+		};
+		A1B2C3D4000000000000E004 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCBuildConfiguration section */
 		49C8C7DF305AD4D60094A978 /* Debug */ = {
@@ -543,7 +578,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		49C8C7BB305AD4D30094A978 /* Build configuration list for PBXProject "nudge" */ = {
+		49C8C7BB305AD4D30094A978 /* Build configuration list for PBXProject "Nudge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				49C8C7DF305AD4D60094A978 /* Debug */,
