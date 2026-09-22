@@ -1,5 +1,6 @@
-import Testing
 import Foundation
+import Testing
+
 @testable import NudgeCore
 
 @Suite("JSON file store")
@@ -27,8 +28,9 @@ final class JSONFileStoreTests: Sendable {
     func roundTrip() throws {
         let records = [
             DayRecord(day: CalendarDay(year: 2026, month: 9, day: 21), state: .clean),
-            DayRecord(day: CalendarDay(year: 2026, month: 9, day: 22), state: .earned,
-                      emergencyUnlocksUsed: 1, reflections: [.better]),
+            DayRecord(
+                day: CalendarDay(year: 2026, month: 9, day: 22), state: .earned,
+                emergencyUnlocksUsed: 1, reflections: [.better]),
         ]
         try store.save(records, to: .dayRecords)
         #expect(try store.load([DayRecord].self, from: .dayRecords) == records)
@@ -36,10 +38,12 @@ final class JSONFileStoreTests: Sendable {
 
     @Test("a later save replaces the earlier one")
     func overwrite() throws {
-        try store.save([DayRecord(day: CalendarDay(year: 2026, month: 9, day: 1), state: .clean)],
-                       to: .dayRecords)
-        try store.save([DayRecord(day: CalendarDay(year: 2026, month: 9, day: 2), state: .rejected)],
-                       to: .dayRecords)
+        try store.save(
+            [DayRecord(day: CalendarDay(year: 2026, month: 9, day: 1), state: .clean)],
+            to: .dayRecords)
+        try store.save(
+            [DayRecord(day: CalendarDay(year: 2026, month: 9, day: 2), state: .rejected)],
+            to: .dayRecords)
         let loaded = try store.load([DayRecord].self, from: .dayRecords)
         #expect(loaded?.count == 1)
         #expect(loaded?.first?.state == .rejected)

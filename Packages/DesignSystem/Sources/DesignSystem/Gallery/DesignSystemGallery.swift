@@ -49,7 +49,9 @@ public struct DesignSystemGallery: View {
             ("textSecondary", Theme.Color.textSecondary, Theme.Color.surface),
             ("textTertiary", Theme.Color.textTertiary, Theme.Color.surface),
         ]
-        return LazyVGrid(columns: [GridItem(.adaptive(minimum: 100), spacing: Theme.Spacing.xs)], spacing: Theme.Spacing.xs) {
+        return LazyVGrid(
+            columns: [GridItem(.adaptive(minimum: 100), spacing: Theme.Spacing.xs)], spacing: Theme.Spacing.xs
+        ) {
             ForEach(swatches, id: \.0) { name, fill, fg in
                 Text(name)
                     .textStyle(Theme.Typography.caption)
@@ -58,7 +60,9 @@ public struct DesignSystemGallery: View {
                     .frame(maxWidth: .infinity, minHeight: 64)
                     .padding(Theme.Spacing.xs)
                     .background(RoundedRectangle(cornerRadius: Theme.Radius.tile, style: .continuous).fill(fill))
-                    .overlay(RoundedRectangle(cornerRadius: Theme.Radius.tile, style: .continuous).strokeBorder(Theme.Color.divider))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: Theme.Radius.tile, style: .continuous).strokeBorder(
+                            Theme.Color.divider))
             }
         }
     }
@@ -67,8 +71,10 @@ public struct DesignSystemGallery: View {
         VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
             ForEach(Theme.Typography.all, id: \.0) { name, style in
                 HStack(alignment: .firstTextBaseline, spacing: Theme.Spacing.sm) {
-                    Text(name).textStyle(Theme.Typography.caption).foregroundStyle(Theme.Color.textTertiary).frame(width: 96, alignment: .leading)
-                    Text(style.uppercased ? "Days you didn't need it" : "Handled 14").textStyle(style).lineLimit(1).minimumScaleFactor(0.4)
+                    Text(name).textStyle(Theme.Typography.caption).foregroundStyle(Theme.Color.textTertiary).frame(
+                        width: 96, alignment: .leading)
+                    Text(style.uppercased ? "Days you didn't need it" : "Handled 14").textStyle(style).lineLimit(1)
+                        .minimumScaleFactor(0.4)
                 }
             }
         }
@@ -77,31 +83,54 @@ public struct DesignSystemGallery: View {
     private var shapeTokens: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.md) {
             HStack(alignment: .bottom, spacing: Theme.Spacing.xs) {
-                ForEach([("xxs", Theme.Spacing.xxs), ("xs", Theme.Spacing.xs), ("sm", Theme.Spacing.sm), ("md", Theme.Spacing.md),
-                         ("lg", Theme.Spacing.lg), ("xl", Theme.Spacing.xl), ("xxl", Theme.Spacing.xxl), ("xxxl", Theme.Spacing.xxxl)], id: \.0) { name, v in
+                ForEach(
+                    [
+                        ("xxs", Theme.Spacing.xxs), ("xs", Theme.Spacing.xs), ("sm", Theme.Spacing.sm),
+                        ("md", Theme.Spacing.md),
+                        ("lg", Theme.Spacing.lg), ("xl", Theme.Spacing.xl), ("xxl", Theme.Spacing.xxl),
+                        ("xxxl", Theme.Spacing.xxxl),
+                    ], id: \.0
+                ) { name, v in
                     VStack(spacing: Theme.Spacing.xxs) {
-                        RoundedRectangle(cornerRadius: Theme.Radius.chip).fill(Theme.Color.accentPrimary).frame(width: v, height: v)
+                        RoundedRectangle(cornerRadius: Theme.Radius.chip).fill(Theme.Color.accentPrimary).frame(
+                            width: v, height: v)
                         Text(name).textStyle(Theme.Typography.caption).foregroundStyle(Theme.Color.textTertiary)
                     }
                 }
             }
             HStack(spacing: Theme.Spacing.sm) {
-                ForEach([("chip", Theme.Radius.chip), ("tile", Theme.Radius.tile), ("cardSmall", Theme.Radius.cardSmall), ("card", Theme.Radius.card)], id: \.0) { name, r in
+                ForEach(
+                    [
+                        ("chip", Theme.Radius.chip), ("tile", Theme.Radius.tile), ("cardSmall", Theme.Radius.cardSmall),
+                        ("card", Theme.Radius.card),
+                    ], id: \.0
+                ) { name, r in
                     VStack(spacing: Theme.Spacing.xxs) {
                         RoundedRectangle(cornerRadius: r, style: .continuous).fill(Theme.Color.surface)
-                            .overlay(RoundedRectangle(cornerRadius: r, style: .continuous).strokeBorder(Theme.Color.divider))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: r, style: .continuous).strokeBorder(Theme.Color.divider)
+                            )
                             .frame(width: 64, height: 64)
-                        Text("\(name) \(Int(r))").textStyle(Theme.Typography.caption).foregroundStyle(Theme.Color.textTertiary)
+                        Text("\(name) \(Int(r))").textStyle(Theme.Typography.caption).foregroundStyle(
+                            Theme.Color.textTertiary)
                     }
                 }
             }
             HStack(spacing: Theme.Spacing.md) {
-                ForEach([("chip", Theme.Elevation.chip), ("control", Theme.Elevation.control), ("hero", Theme.Elevation.hero)], id: \.0) { name, d in
+                ForEach(
+                    [
+                        ("chip", Theme.Elevation.chip), ("control", Theme.Elevation.control),
+                        ("hero", Theme.Elevation.hero),
+                    ], id: \.0
+                ) { name, d in
                     VStack(spacing: Theme.Spacing.xs) {
                         RoundedRectangle(cornerRadius: Theme.Radius.tile, style: .continuous).fill(Theme.Color.reward)
                             .frame(width: 64, height: 40)
-                            .blockShadow(RoundedRectangle(cornerRadius: Theme.Radius.tile, style: .continuous), color: Theme.Color.rewardDepth, depth: d)
-                        Text("\(name) \(Int(d))").textStyle(Theme.Typography.caption).foregroundStyle(Theme.Color.textTertiary)
+                            .blockShadow(
+                                RoundedRectangle(cornerRadius: Theme.Radius.tile, style: .continuous),
+                                color: Theme.Color.rewardDepth, depth: d)
+                        Text("\(name) \(Int(d))").textStyle(Theme.Typography.caption).foregroundStyle(
+                            Theme.Color.textTertiary)
                     }
                 }
             }
@@ -112,8 +141,14 @@ public struct DesignSystemGallery: View {
         VStack(spacing: Theme.Spacing.sm) {
             Button("Done") {}.buttonStyle(.nudgePrimary)
             HStack(spacing: Theme.Spacing.sm) {
-                Button { } label: { Label("Swap", systemImage: "shuffle") }.buttonStyle(.nudgeSecondary)
-                Button { } label: { Label("Skip", systemImage: "forward.fill") }.buttonStyle(.nudgeSecondary)
+                Button {
+                } label: {
+                    Label("Swap", systemImage: "shuffle")
+                }.buttonStyle(.nudgeSecondary)
+                Button {
+                } label: {
+                    Label("Skip", systemImage: "forward.fill")
+                }.buttonStyle(.nudgeSecondary)
             }
             Button("Remove TikTok from Nudge") {}.buttonStyle(.nudgeDestructive)
             Button("Emergency override") {}.buttonStyle(.nudgeText)
@@ -134,7 +169,8 @@ public struct DesignSystemGallery: View {
                     IconCircle("drop", tone: .info)
                     VStack(alignment: .leading, spacing: Theme.Spacing.xxs) {
                         Text("Splash cold water on your face").textStyle(Theme.Typography.titleS)
-                        Text("Instant reset · 1 min").textStyle(Theme.Typography.bodyS).foregroundStyle(Theme.Color.textSecondary)
+                        Text("Instant reset · 1 min").textStyle(Theme.Typography.bodyS).foregroundStyle(
+                            Theme.Color.textSecondary)
                     }
                 }
             }
@@ -166,10 +202,14 @@ public struct DesignSystemGallery: View {
                 }
                 DayCell(day: 16, style: .noData, isToday: true, stateDescription: "no data")
             }
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: Theme.Spacing.xxs), count: 2), alignment: .leading, spacing: Theme.Spacing.xxs) {
+            LazyVGrid(
+                columns: Array(repeating: GridItem(.flexible(), spacing: Theme.Spacing.xxs), count: 2),
+                alignment: .leading, spacing: Theme.Spacing.xxs
+            ) {
                 ForEach(DayCellStyle.allPresets, id: \.name) { preset in
                     HStack(spacing: Theme.Spacing.xs) {
-                        RoundedRectangle(cornerRadius: Theme.Radius.chip / 3).fill(preset.style.fill).frame(width: 12, height: 12)
+                        RoundedRectangle(cornerRadius: Theme.Radius.chip / 3).fill(preset.style.fill).frame(
+                            width: 12, height: 12)
                         Text(preset.name).textStyle(Theme.Typography.caption).foregroundStyle(Theme.Color.textSecondary)
                     }
                 }

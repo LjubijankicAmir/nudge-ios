@@ -28,7 +28,7 @@ public struct CalendarDay: Codable, Sendable, Hashable, Comparable, CustomString
     /// The day `offset` days away, or `nil` if the calendar cannot represent it.
     public func adding(days offset: Int, in calendar: Calendar) -> CalendarDay? {
         guard let start = date(in: calendar),
-              let shifted = calendar.date(byAdding: .day, value: offset, to: start)
+            let shifted = calendar.date(byAdding: .day, value: offset, to: start)
         else { return nil }
         return CalendarDay(date: shifted, calendar: calendar)
     }

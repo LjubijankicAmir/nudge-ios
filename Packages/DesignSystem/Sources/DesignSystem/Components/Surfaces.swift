@@ -55,7 +55,9 @@ public struct NudgeCard<Content: View>: View {
     private let elevation: CGFloat
     private let content: Content
 
-    public init(tone: Theme.Tone = .surface, elevation: CGFloat = Theme.Elevation.card, @ViewBuilder content: () -> Content) {
+    public init(
+        tone: Theme.Tone = .surface, elevation: CGFloat = Theme.Elevation.card, @ViewBuilder content: () -> Content
+    ) {
         self.tone = tone
         self.elevation = elevation
         self.content = content()

@@ -14,8 +14,10 @@ public extension Theme {
         public let tracking: CGFloat
         public let uppercased: Bool
 
-        public init(size: CGFloat, weight: Font.Weight, lineHeight: CGFloat,
-                    relativeTo: Font.TextStyle, tracking: CGFloat = 0, uppercased: Bool = false) {
+        public init(
+            size: CGFloat, weight: Font.Weight, lineHeight: CGFloat,
+            relativeTo: Font.TextStyle, tracking: CGFloat = 0, uppercased: Bool = false
+        ) {
             self.size = size
             self.weight = weight
             self.lineHeight = lineHeight
@@ -29,13 +31,17 @@ public extension Theme {
     /// No custom font is registered, so there is no fallback to manage.
     enum Typography {
         /// Hero metric ("14"). Clamps at xxxLarge via `relativeTo: .largeTitle`.
-        public static let displayXL = TextStyle(size: 88, weight: .black, lineHeight: 88, relativeTo: .largeTitle, tracking: -3.5)
+        public static let displayXL = TextStyle(
+            size: 88, weight: .black, lineHeight: 88, relativeTo: .largeTitle, tracking: -3.5)
         /// Completion headline ("You handled it.").
-        public static let displayL = TextStyle(size: 64, weight: .black, lineHeight: 64, relativeTo: .largeTitle, tracking: -2.5)
+        public static let displayL = TextStyle(
+            size: 64, weight: .black, lineHeight: 64, relativeTo: .largeTitle, tracking: -2.5)
         /// Task title on the protocol card.
-        public static let displayM = TextStyle(size: 40, weight: .black, lineHeight: 42, relativeTo: .title, tracking: -1.2)
+        public static let displayM = TextStyle(
+            size: 40, weight: .black, lineHeight: 42, relativeTo: .title, tracking: -1.2)
         /// Screen title / wordmark.
-        public static let titleL = TextStyle(size: 26, weight: .black, lineHeight: 32, relativeTo: .title2, tracking: -0.5)
+        public static let titleL = TextStyle(
+            size: 26, weight: .black, lineHeight: 32, relativeTo: .title2, tracking: -0.5)
         /// Section title ("September").
         public static let titleM = TextStyle(size: 20, weight: .black, lineHeight: 26, relativeTo: .title3)
         /// Card title.
@@ -48,7 +54,8 @@ public extension Theme {
         public static let bodyS = TextStyle(size: 14, weight: .bold, lineHeight: 20, relativeTo: .subheadline)
         public static let caption = TextStyle(size: 13, weight: .bold, lineHeight: 18, relativeTo: .footnote)
         /// ALL-CAPS kicker ("DAYS YOU DIDN'T NEED IT").
-        public static let eyebrow = TextStyle(size: 13, weight: .heavy, lineHeight: 16, relativeTo: .caption, tracking: 1.3, uppercased: true)
+        public static let eyebrow = TextStyle(
+            size: 13, weight: .heavy, lineHeight: 16, relativeTo: .caption, tracking: 1.3, uppercased: true)
         /// Countdown digits. Always paired with `.monospacedDigit()` by the modifier.
         public static let numeric = TextStyle(size: 16, weight: .black, lineHeight: 20, relativeTo: .body)
 

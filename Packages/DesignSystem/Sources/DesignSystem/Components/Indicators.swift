@@ -23,11 +23,13 @@ public struct StreakCounter: View {
     public var body: some View {
         switch layout {
         case .badge:
-            NudgePill(isFreshStart ? "Day 1" : "\(days)",
-                      systemImage: "flame",
-                      tone: isFreshStart ? .surface : .reward,
-                      elevated: true)
-                .accessibilityLabel(accessibilityText)
+            NudgePill(
+                isFreshStart ? "Day 1" : "\(days)",
+                systemImage: "flame",
+                tone: isFreshStart ? .surface : .reward,
+                elevated: true
+            )
+            .accessibilityLabel(accessibilityText)
         case .hero:
             HStack(spacing: Theme.Spacing.sm) {
                 IconCircle("flame", tone: isFreshStart ? .surface : .reward, size: Theme.Size.iconCircleLarge)
@@ -76,10 +78,13 @@ public struct DayCellStyle: Sendable, Hashable {
 
     public static let clean = DayCellStyle(fill: Theme.Color.dayClean, foreground: Theme.Color.onDayClean)
     public static let earned = DayCellStyle(fill: Theme.Color.dayEarned, foreground: Theme.Color.onDayEarned)
-    public static let incomplete = DayCellStyle(fill: Theme.Color.dayIncomplete, foreground: Theme.Color.onDayIncomplete)
+    public static let incomplete = DayCellStyle(
+        fill: Theme.Color.dayIncomplete, foreground: Theme.Color.onDayIncomplete)
     public static let rejected = DayCellStyle(fill: Theme.Color.dayRejected, foreground: Theme.Color.onDayRejected)
-    public static let overridden = DayCellStyle(fill: Theme.Color.dayOverridden, foreground: Theme.Color.onDayOverridden)
-    public static let noData = DayCellStyle(fill: Theme.Color.dayNoData, foreground: Theme.Color.onDayNoData, isPlaceholder: true)
+    public static let overridden = DayCellStyle(
+        fill: Theme.Color.dayOverridden, foreground: Theme.Color.onDayOverridden)
+    public static let noData = DayCellStyle(
+        fill: Theme.Color.dayNoData, foreground: Theme.Color.onDayNoData, isPlaceholder: true)
 
     /// Every preset with a display name. For the gallery only.
     public static let allPresets: [(name: String, style: DayCellStyle)] = [
@@ -152,7 +157,9 @@ public struct CooldownRing: View {
             Circle().stroke(Theme.Color.backgroundSecondary, lineWidth: Theme.Stroke.cooldownRing)
             Circle()
                 .trim(from: 0, to: fraction)
-                .stroke(Theme.Color.accentPrimary, style: StrokeStyle(lineWidth: Theme.Stroke.cooldownRing, lineCap: .round))
+                .stroke(
+                    Theme.Color.accentPrimary, style: StrokeStyle(lineWidth: Theme.Stroke.cooldownRing, lineCap: .round)
+                )
                 .rotationEffect(.degrees(-90))
                 .animation(.linear(duration: 1), value: fraction)
             VStack(spacing: Theme.Spacing.xxs) {
@@ -186,7 +193,11 @@ public struct StepProgress: View {
         HStack(spacing: Theme.Spacing.xxs + 2) {
             ForEach(0..<total, id: \.self) { i in
                 Capsule()
-                    .fill(i < completed ? Theme.Color.success : (i == completed ? Theme.Color.reward : Theme.Color.backgroundSecondary))
+                    .fill(
+                        i < completed
+                            ? Theme.Color.success
+                            : (i == completed ? Theme.Color.reward : Theme.Color.backgroundSecondary)
+                    )
                     .frame(height: Theme.Size.progressSegmentHeight)
             }
         }

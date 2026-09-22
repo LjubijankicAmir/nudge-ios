@@ -41,7 +41,10 @@ public struct PrimaryButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity, minHeight: Theme.Size.controlHeight)
             .padding(.horizontal, Theme.Spacing.xl)
             .background(Capsule().fill(Theme.Color.accentPrimary))
-            .blockShadow(Capsule(), color: Theme.Color.accentPrimaryDepth, depth: Theme.Elevation.control, pressed: configuration.isPressed)
+            .blockShadow(
+                Capsule(), color: Theme.Color.accentPrimaryDepth, depth: Theme.Elevation.control,
+                pressed: configuration.isPressed
+            )
             .opacity(isEnabled ? 1 : Theme.Opacity.disabled)
     }
 }
@@ -58,7 +61,10 @@ public struct SecondaryButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity, minHeight: Theme.Size.controlHeight)
             .padding(.horizontal, Theme.Spacing.lg)
             .background(Capsule().fill(Theme.Color.surface))
-            .blockShadow(Capsule(), color: Theme.Color.surfaceDepth, depth: Theme.Elevation.control, pressed: configuration.isPressed)
+            .blockShadow(
+                Capsule(), color: Theme.Color.surfaceDepth, depth: Theme.Elevation.control,
+                pressed: configuration.isPressed
+            )
             .opacity(isEnabled ? 1 : Theme.Opacity.disabled)
     }
 }
@@ -76,7 +82,10 @@ public struct DestructiveButtonStyle: ButtonStyle {
             .frame(maxWidth: .infinity, minHeight: Theme.Size.controlHeight)
             .padding(.horizontal, Theme.Spacing.lg)
             .background(Capsule().fill(Theme.Color.danger))
-            .blockShadow(Capsule(), color: Theme.Color.dangerDepth, depth: Theme.Elevation.control, pressed: configuration.isPressed)
+            .blockShadow(
+                Capsule(), color: Theme.Color.dangerDepth, depth: Theme.Elevation.control,
+                pressed: configuration.isPressed
+            )
             .opacity(isEnabled ? 1 : Theme.Opacity.disabled)
     }
 }

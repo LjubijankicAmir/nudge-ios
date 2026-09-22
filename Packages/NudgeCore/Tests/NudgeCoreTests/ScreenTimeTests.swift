@@ -1,5 +1,6 @@
-import Testing
 import Foundation
+import Testing
+
 @testable import NudgeCore
 
 @Suite("Fake screen time service")

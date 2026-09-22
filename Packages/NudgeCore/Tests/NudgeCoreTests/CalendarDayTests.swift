@@ -1,5 +1,6 @@
-import Testing
 import Foundation
+import Testing
+
 @testable import NudgeCore
 
 @Suite("Calendar day")
@@ -25,13 +26,15 @@ struct CalendarDayTests {
         let newYearsEve = CalendarDay(year: 2026, month: 12, day: 31)
         #expect(newYearsEve.adding(days: 1, in: utc) == CalendarDay(year: 2027, month: 1, day: 1))
 
-        #expect(CalendarDay(year: 2026, month: 3, day: 1).adding(days: -1, in: utc)
+        #expect(
+            CalendarDay(year: 2026, month: 3, day: 1).adding(days: -1, in: utc)
                 == CalendarDay(year: 2026, month: 2, day: 28))
     }
 
     @Test("handles a leap day")
     func leapYear() {
-        #expect(CalendarDay(year: 2028, month: 2, day: 28).adding(days: 1, in: utc)
+        #expect(
+            CalendarDay(year: 2028, month: 2, day: 28).adding(days: 1, in: utc)
                 == CalendarDay(year: 2028, month: 2, day: 29))
     }
 
