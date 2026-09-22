@@ -46,7 +46,17 @@ Choosing the right tool is part of the exercise here.
 
 ## Status
 
-🚧 **Early development.** Project scaffolding and specification.
+🚧 **Early development.** Foundations in place; no user-facing features yet.
+
+```
+Nudge/                  app target
+Packages/NudgeCore/     domain models, persistence, clock, Screen Time abstraction
+Packages/DesignSystem/  design tokens and components
+```
+
+`NudgeCore` is deliberately dependency-free and SwiftUI-free, because the app
+extensions link it and run under a memory budget of a few megabytes. That constraint —
+not taste — is what draws the module boundary.
 
 ## Documentation
 

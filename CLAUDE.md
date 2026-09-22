@@ -13,7 +13,16 @@ say so rather than quietly diverging.
 
 ## Current state
 
-Scaffolding. Xcode project + docs only; no features implemented yet.
+Foundations. Two local packages exist and are under test; no features or screens yet.
+The three app extension targets have not been created.
+
+```
+Nudge/                 app target (synchronized folder — files on disk are compiled
+                       automatically, no project edits needed to add one)
+Packages/NudgeCore/    extension-safe: domain, persistence, clock, Screen Time
+                       abstraction. Zero dependencies, no SwiftUI.
+Packages/DesignSystem/ app-only: tokens, components, gallery. SwiftUI.
+```
 
 ## Build & verify
 
@@ -56,6 +65,8 @@ modules under `Packages/` for real boundaries.
   Use `ResetTask`, `ProtocolStep`, etc.
 - Anything a package exposes to the app must be `public`. SPM defaults to `internal`
   and this is the most common mistake when extracting a module.
+- Read the current time through `AppClock`, never `Date()` directly. (It is `AppClock`
+  rather than `Clock` because the standard library already has a `Clock` protocol.)
 
 ## Screen Time API — non-obvious constraints
 
@@ -90,12 +101,18 @@ These are easy to get wrong. Design around them rather than discovering them lat
 
 ## Design system
 
-Not yet built. Once `Packages/DesignSystem` exists:
+`Packages/DesignSystem` — the "Arcade" direction. `Theme.Color`, `Theme.Typography`,
+`Theme.Spacing`, `Theme.Radius`, `Theme.Elevation`, `Theme.Motion`, plus button styles
+and components. `DesignSystemGallery` renders everything at once.
 
 - **Never hardcode a colour, spacing value, corner radius or font size in a feature.**
   Use tokens. If a token is missing, add it to the design system rather than inlining
   a literal.
-- Semantic token names (`accentPrimary`), not literal ones (`orange`).
+- Apply type with `.textStyle(Theme.Typography.bodyM)`, never `.font(...)`.
+- `DesignSystem` knows nothing about the domain. `DayCell` takes a presentational
+  `DayCellStyle`; mapping `DayState` onto one is the feature layer's job.
+- **`DesignSystem` must never be linked by an app extension.** It is SwiftUI-heavy and
+  the extensions run under a single-digit-MB budget.
 
 ## Commits
 
@@ -114,4 +131,7 @@ or PR descriptions.
   a dependency needs a justification.
 - Don't commit `xcuserdata/`, `DerivedData/` or build output.
 - Don't weaken concurrency checking to make something compile.
+- Don't add a dependency from `NudgeCore` to anything, or import SwiftUI into it — that
+  is what keeps the extensions alive.
+- Don't commit unformatted code; `./Scripts/format.sh` before committing (CI lints it).
 - Don't implement behaviour that contradicts `docs/SPEC.md` — raise it instead.
