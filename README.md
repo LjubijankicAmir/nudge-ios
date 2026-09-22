@@ -84,7 +84,7 @@ not taste — is what draws the module boundary.
 ```bash
 git clone git@github.com:<user>/nudge-ios.git
 cd nudge-ios
-open nudge.xcodeproj
+open Nudge.xcodeproj
 ```
 
 Build and run on the iOS Simulator. Note that Screen Time behaviour cannot be fully
