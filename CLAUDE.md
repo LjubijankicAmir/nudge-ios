@@ -13,8 +13,8 @@ say so rather than quietly diverging.
 
 ## Current state
 
-Foundations. Packages and all six targets exist and build; no features or screens yet.
-The extensions are still Apple's unmodified templates.
+Foundations complete. All six targets build; the app shell runs. No features yet, and
+the extensions are still Apple's unmodified templates.
 
 ```
 Nudge/                 app target (synchronized folder — files on disk are compiled
@@ -31,6 +31,11 @@ All four runnable targets carry the `group.app.nudge` App Group and Family Contr
 entitlements. `NudgeTests/AppGroupTests.swift` guards this at runtime — if the App
 Group is ever dropped from a target, those tests fail loudly instead of the app
 silently losing sight of its extensions.
+
+The app shell is in `Nudge/App/`: `CompositionRoot` builds the object graph at launch,
+`AppRouter` owns a typed `NavigationStack` path, and `Route(deepLink:)` parses the
+`nudge://` scheme. `CompositionRoot` currently always builds `FakeScreenTimeService` —
+swapping in the live one is a change to a single function.
 
 No `DEVELOPMENT_TEAM` is set yet, so device builds are not yet possible.
 
@@ -77,6 +82,12 @@ modules under `Packages/` for real boundaries.
   and this is the most common mistake when extracting a module.
 - Read the current time through `AppClock`, never `Date()` directly. (It is `AppClock`
   rather than `Clock` because the standard library already has a `Clock` protocol.)
+- **The app target defaults to main-actor isolation**
+  (`SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`), so every type declared in it is
+  implicitly `@MainActor`. Mark pure value types `nonisolated` — otherwise they cannot
+  be used from a background context, and tests covering them are forced onto the main
+  actor for no reason. `Route` is the worked example. The packages do **not** have this
+  setting, so `NudgeCore` types are isolation-free already.
 
 ## Screen Time API — non-obvious constraints
 
@@ -123,6 +134,17 @@ and components. `DesignSystemGallery` renders everything at once.
   `DayCellStyle`; mapping `DayState` onto one is the feature layer's job.
 - **`DesignSystem` must never be linked by an app extension.** It is SwiftUI-heavy and
   the extensions run under a single-digit-MB budget.
+
+## Localization
+
+Every user-facing string lives in `Nudge/Localizable.xcstrings`.
+
+- SwiftUI extracts `Text("...")` and other `LocalizedStringKey` positions automatically.
+- When passing a plain `String` to an API that takes one — `StreakCounter(detail:)`, for
+  instance — wrap it: `String(localized: "...")`. It will not be localized otherwise,
+  and nothing warns you.
+- `xcodebuild` does not write new keys back into the catalog; only Xcode does. If a
+  string is missing after a command-line build, add it in Xcode or by hand.
 
 ## Commits
 
