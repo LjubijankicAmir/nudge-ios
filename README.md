@@ -63,6 +63,7 @@ not taste — is what draws the module boundary.
 | Document | What's in it |
 |---|---|
 | [docs/SPEC.md](docs/SPEC.md) | Product spec: features, acceptance criteria, day-state model, open questions |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Process model, module graph, dependency rules, subsystem contracts |
 | [CLAUDE.md](CLAUDE.md) | Engineering conventions and architectural rules |
 
 ## Tech

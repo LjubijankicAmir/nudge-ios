@@ -11,6 +11,10 @@ Product spec, acceptance criteria and open questions: **[docs/SPEC.md](docs/SPEC
 Treat it as the source of truth for behaviour. If an implementation would contradict it,
 say so rather than quietly diverging.
 
+Structure, module boundaries and subsystem contracts:
+**[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**. Read it before adding a module,
+changing a dependency edge, or touching platform configuration.
+
 ## Current state
 
 Foundations complete. All six targets build; the app shell runs. No features yet, and
