@@ -48,7 +48,7 @@ Exactly one state per calendar day. Drives the calendar view and streak calculat
 |---|---|---|
 | `CLEAN` | Threshold never reached | Extends |
 | `EARNED` | Threshold reached, lock accepted, all tasks completed | Extends |
-| `INCOMPLETE` | Threshold reached, lock accepted, tasks not all completed | **See open question Q1** — assumed: does not extend, does not break |
+| `INCOMPLETE` | Threshold reached, lock accepted, tasks not all completed | Extends |
 | `REJECTED` | Threshold reached, user rejected the lock | Breaks |
 | `OVERRIDDEN` | Emergency unlock used | Breaks |
 | `NO_DATA` | Before first use, or monitoring unavailable | Neutral (ignored) |
@@ -215,13 +215,19 @@ These drive the feel of the product and should be treated as configurable consta
 
 ---
 
-## 7. Open questions
+## 7. Resolved decisions
 
-**Q1 — `INCOMPLETE` day handling.** If the user accepts the lock but does not complete all tasks,
-does the streak break, or does it simply not extend?
-*Assumed in this draft: does not extend, does not break.*
-Rationale: accepting the lock is the behaviour we want to reinforce; breaking the streak for an
-honest partial attempt punishes the wrong thing.
+**Q1 — `INCOMPLETE` day handling. Resolved: it extends the streak.**
+The streak measures whether the user stayed inside the lock, not whether they worked through
+the whole protocol. Task completion is self-reported and unverifiable — a user can tap every
+step in seconds — so rewarding it would be rewarding a number the app cannot trust. The streak
+therefore breaks only on `REJECTED` or `OVERRIDDEN`: the two cases where the user actually got
+back into the blocked apps.
+
+`INCOMPLETE` remains a distinct day state for the calendar and for statistics; it simply carries
+no streak penalty.
+
+## 8. Open questions
 
 **Q2 — Lock duration length.** A ~30 minute lock triggered by a 30 minute threshold may feel
 disproportionate and drive rejections/uninstalls. Needs real-world tuning — consider a shorter
@@ -232,7 +238,7 @@ session-based threshold better matches the actual doomscroll failure mode.
 
 ---
 
-## 8. Dependencies & risks
+## 9. Dependencies & risks
 
 - **Family Controls entitlement** from Apple is required for distribution. Approval is not
   guaranteed and gates the entire product. **Apply before building.**

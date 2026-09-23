@@ -33,12 +33,15 @@ public enum DayState: String, Codable, Sendable, CaseIterable, Hashable {
         lhs.severity >= rhs.severity ? lhs : rhs
     }
 
+    /// The streak measures whether the user stayed inside the lock, not whether
+    /// they worked through the whole protocol. Task completion is self-reported
+    /// and unverifiable — a user can tap through every step in seconds — so
+    /// rewarding it would be rewarding a number the app cannot trust.
+    /// Accepting the lock is the behaviour that is actually observable, and the
+    /// behaviour worth reinforcing. (SPEC Q1, resolved.)
     public var streakEffect: StreakEffect {
         switch self {
-        case .clean, .earned: .extends
-        // SPEC Q1 is still open. Current assumption: accepting the lock but not
-        // finishing is neither rewarded nor punished. Change here when settled.
-        case .incomplete: .holds
+        case .clean, .earned, .incomplete: .extends
         case .rejected, .overridden: .breaks
         case .noData: .ignored
         }
@@ -52,8 +55,6 @@ public enum DayState: String, Codable, Sendable, CaseIterable, Hashable {
 public enum StreakEffect: Sendable, Hashable {
     /// Adds one to the streak.
     case extends
-    /// Leaves the streak untouched, neither extending nor resetting it.
-    case holds
     /// Resets the streak to zero.
     case breaks
     /// Not counted at all.

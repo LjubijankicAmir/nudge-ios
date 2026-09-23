@@ -100,7 +100,10 @@ Two rules are expressed as behaviour on `DayState` rather than as scattered cond
 
 - `DayState.worst(_:_:)` resolves a day that recorded multiple outcomes. Precedence is
   `overridden > rejected > incomplete > earned > clean > noData` (SPEC §3).
-- `DayState.streakEffect` maps a state onto `extends`, `holds`, `breaks` or `ignored`.
+- `DayState.streakEffect` maps a state onto `extends`, `breaks` or `ignored`. Only
+  `rejected` and `overridden` break a streak: those are the two states in which the user
+  regained access to the blocked applications. Task completion is self-reported and
+  therefore not a streak input (SPEC §7).
 
 `CalendarDay` stores calendar components rather than a `Date`. A `Date` denotes an
 instant; a calendar day does not. Storing components keeps persisted history stable
@@ -443,9 +446,6 @@ Constraints that shape the design and are not negotiable:
 
 ## 11. Open decisions
 
-- **SPEC Q1** — whether an `incomplete` day breaks the streak or merely fails to extend
-  it. Currently encoded as `.holds` in `DayState.streakEffect`. Must be resolved before
-  streak accumulation is implemented.
 - **SPEC Q2** — cooldown duration relative to threshold. Currently derived from the sum
   of nominal tier durations (32 minutes).
 - **SPEC Q3** — daily-total versus session-based thresholds. Daily total is implemented.

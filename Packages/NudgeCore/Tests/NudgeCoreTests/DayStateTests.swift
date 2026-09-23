@@ -42,9 +42,16 @@ struct DayStateTests {
         #expect(DayState.overridden.streakEffect == .breaks)
     }
 
-    @Test("an unfinished protocol neither extends nor breaks (SPEC Q1, assumed)")
-    func incompleteHolds() {
-        #expect(DayState.incomplete.streakEffect == .holds)
+    @Test("an unfinished protocol still extends the streak (SPEC Q1)")
+    func incompleteExtends() {
+        // Task completion is self-reported; staying inside the lock is what counts.
+        #expect(DayState.incomplete.streakEffect == .extends)
+    }
+
+    @Test("only rejecting the lock or overriding it breaks the streak")
+    func onlyEscapingBreaksTheStreak() {
+        let breaking = DayState.allCases.filter { $0.streakEffect == .breaks }
+        #expect(Set(breaking) == [.rejected, .overridden])
     }
 
     @Test("noData is ignored by the streak (SPEC F6.6)")
